@@ -22,21 +22,23 @@ namespace BenchmarkTests
 
             Console.WriteLine($"Test with {number} registers\n");
 
+            var nomePenultimo = $"Funcionario {number - 1}";
+
             var swAny = new Stopwatch();
             swAny.Start();
-            var any = funcionarios.Any(f => f.Nome == "Funcionario 99999");
+            var any = funcionarios.Any(f => f.Nome.Equals(nomePenultimo));
             swAny.Stop();
             Console.WriteLine($"Any: {swAny.ElapsedTicks} ticks\n");
 
             var swExists = new Stopwatch();
             swExists.Start();
-            var exists = funcionarios.Exists(f => f.Nome == "Funcionario 99999");
+            var exists = funcionarios.Exists(f => f.Nome.Equals(nomePenultimo));
             swExists.Stop();
             Console.WriteLine($"Exists: {swExists.ElapsedTicks} ticks\n");
 
             var swCount = new Stopwatch();
             swCount.Start();
-            var encontrou = funcionarios.Count(f => f.Nome == "Funcionario 99999") == 1;
+            var encontrou = funcionarios.Count(f => f.Nome.Equals(nomePenultimo)) == 1;
             swCount.Stop();
             Console.WriteLine($"Count: {swCount.ElapsedTicks} ticks\n");
 
